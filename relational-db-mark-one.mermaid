@@ -1,4 +1,5 @@
 erDiagram
+
     USERS {
         int user_id PK
         string email
@@ -34,34 +35,16 @@ erDiagram
         int capacity
     }
     
-    EVENTINVITEES {
+    EVENTINVITATION {
         int id PK
         int event_id FK
         int user_id FK
     }
     
-    EVENTATTENDEES {
+    EVENTRESPONSE {
         int id PK
         int event_id FK
         int user_id FK
-    }
-    
-    USERINVITEDEVENTS {
-        int id PK
-        int user_id FK
-        int event_id FK
-    }
-    
-    USERACCEPTEDEVENTS {
-        int id PK
-        int user_id FK
-        int event_id FK
-    }
-    
-    USEREVENTSUBSCRIPTIONS {
-        int id PK
-        int user_id FK
-        int event_id FK
     }
     
     COMMENTS {
@@ -87,23 +70,17 @@ erDiagram
         datetime event_date_time
     }
 
-    USERS ||--o{ USERROLES: "has many"
+    USERS ||--o{ USERROLES: "user has many user-roles"
     ROLES ||--o{ USERROLES: "has many"
     USERS ||--o{ EVENTS: "owns"
-    USERS ||--o{ EVENTINVITEES: "invited to many"
-    USERS ||--o{ EVENTATTENDEES: "attends many"
-    USERS ||--o{ USERINVITEDEVENTS: "invited to many"
-    USERS ||--o{ USERACCEPTEDEVENTS: "accepts many"
-    USERS ||--o{ USEREVENTSUBSCRIPTIONS: "subscribes to many"
+    USERS ||--o{ EVENTINVITATION: "receives many"
+    USERS ||--o{ EVENTRESPONSE: "has many"
     USERS ||--o{ COMMENTS: "makes many"
-    USERS ||--o{ COMMENTREACTIONS: "reacts to many"
-    EVENTS ||--o{ EVENTINVITEES: "has many"
-    EVENTS ||--o{ EVENTATTENDEES: "has many"
-    EVENTS ||--o{ USERINVITEDEVENTS: "invites many"
-    EVENTS ||--o{ USERACCEPTEDEVENTS: "accepted by many"
-    EVENTS ||--o{ USEREVENTSUBSCRIPTIONS: "subscribed by many"
+    USERS ||--o{ COMMENTREACTIONS: "makes many"
+    EVENTS ||--o{ EVENTINVITATION: "has many"
+    EVENTS ||--o{ EVENTRESPONSE: "has many"
     EVENTS ||--o{ COMMENTS: "has many"
     EVENTS ||--o{ VENUEEVENTS: "occurs at many"
     COMMENTS ||--o{ COMMENTREACTIONS: "receives many"
-    COMMENTS ||--o| COMMENTS: "replies to many"
+    COMMENTS ||--o{ COMMENTS: "parent comment has many children"
     VENUES ||--o{ VENUEEVENTS: "hosts many"
