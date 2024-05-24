@@ -1,0 +1,109 @@
+erDiagram
+    USERS {
+        int user_id PK
+        string email
+        string first_name
+        string last_name
+    }
+    
+    ROLES {
+        int role_id PK
+        string role_name
+    }
+    
+    USERROLES {
+        int user_role_id PK
+        int user_id FK
+        int role_id FK
+    }
+    
+    EVENTS {
+        int event_id PK
+        string name
+        datetime date_time
+        int venue_id FK
+        string status
+        int owner_id FK
+    }
+    
+    VENUES {
+        int venue_id PK
+        string name
+        float latitude
+        float longitude
+        int capacity
+    }
+    
+    EVENTINVITEES {
+        int id PK
+        int event_id FK
+        int user_id FK
+    }
+    
+    EVENTATTENDEES {
+        int id PK
+        int event_id FK
+        int user_id FK
+    }
+    
+    USERINVITEDEVENTS {
+        int id PK
+        int user_id FK
+        int event_id FK
+    }
+    
+    USERACCEPTEDEVENTS {
+        int id PK
+        int user_id FK
+        int event_id FK
+    }
+    
+    USEREVENTSUBSCRIPTIONS {
+        int id PK
+        int user_id FK
+        int event_id FK
+    }
+    
+    COMMENTS {
+        int comment_id PK
+        int event_id FK
+        int user_id FK
+        int parent_comment_id FK
+        datetime time
+        string text
+    }
+    
+    COMMENTREACTIONS {
+        int id PK
+        int comment_id FK
+        int user_id FK
+        string emoji
+    }
+    
+    VENUEEVENTS {
+        int id PK
+        int venue_id FK
+        int event_id FK
+        datetime event_date_time
+    }
+
+    USERS ||--o{ USERROLES: "has many"
+    ROLES ||--o{ USERROLES: "has many"
+    USERS ||--o{ EVENTS: "owns"
+    USERS ||--o{ EVENTINVITEES: "invited to many"
+    USERS ||--o{ EVENTATTENDEES: "attends many"
+    USERS ||--o{ USERINVITEDEVENTS: "invited to many"
+    USERS ||--o{ USERACCEPTEDEVENTS: "accepts many"
+    USERS ||--o{ USEREVENTSUBSCRIPTIONS: "subscribes to many"
+    USERS ||--o{ COMMENTS: "makes many"
+    USERS ||--o{ COMMENTREACTIONS: "reacts to many"
+    EVENTS ||--o{ EVENTINVITEES: "has many"
+    EVENTS ||--o{ EVENTATTENDEES: "has many"
+    EVENTS ||--o{ USERINVITEDEVENTS: "invites many"
+    EVENTS ||--o{ USERACCEPTEDEVENTS: "accepted by many"
+    EVENTS ||--o{ USEREVENTSUBSCRIPTIONS: "subscribed by many"
+    EVENTS ||--o{ COMMENTS: "has many"
+    EVENTS ||--o{ VENUEEVENTS: "occurs at many"
+    COMMENTS ||--o{ COMMENTREACTIONS: "receives many"
+    COMMENTS ||--o| COMMENTS: "replies to many"
+    VENUES ||--o{ VENUEEVENTS: "hosts many"
