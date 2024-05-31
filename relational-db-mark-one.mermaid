@@ -5,20 +5,23 @@ erDiagram
         string email
         string first_name
         string last_name
+        datetime createdAt
     }
     
     ROLES {
         int role_id PK
         string role_name
+        datetime createdAt
     }
     
     USERROLES {
         int user_role_id PK
         int user_id FK
         int role_id FK
+        datetime createdAt
     }
     
-      EVENTS {
+    EVENTS {
         int event_id PK
         string name
         datetime date_time
@@ -26,6 +29,8 @@ erDiagram
         string status
         int owner_id FK
         boolean is_private
+        int capacity
+        datetime createdAt
     }
     
     VENUES {
@@ -33,7 +38,13 @@ erDiagram
         string name
         float latitude
         float longitude
+        string address1
+        string address2
+        string postcode
+        boolean is_private
         int capacity
+        int owner_id FK
+        datetime createdAt
     }
     
     COMMENTS {
@@ -43,6 +54,7 @@ erDiagram
         int parent_comment_id FK
         datetime time
         string text
+        datetime createdAt
     }
     
     COMMENTREACTIONS {
@@ -50,6 +62,7 @@ erDiagram
         int comment_id FK
         int user_id FK
         string emoji
+        datetime createdAt
     }
     
     VENUEEVENTS {
@@ -57,11 +70,13 @@ erDiagram
         int venue_id FK
         int event_id FK
         datetime event_date_time
+        datetime createdAt
     }
 
     USERS ||--o{ USERROLES: "user has many user-roles"
     ROLES ||--o{ USERROLES: "has many"
     USERS ||--o{ EVENTS: "owns"
+    USERS ||--o{ VENUES: "owns"
     USERS ||--o{ COMMENTS: "makes many"
     USERS ||--o{ COMMENTREACTIONS: "makes many"
     EVENTS ||--o{ COMMENTS: "has many"
