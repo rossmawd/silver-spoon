@@ -46,14 +46,14 @@ erDiagram
         int owner_id FK
         datetime createdAt
     }
-    
+
     INVITATIONS {
         int invitation_id PK
         int sender_id FK "leave as null for self-invite"
         int receiver_id FK
         int event_id FK
-        datetime sent_at
         string status
+        datetime updatedAt
         datetime createdAt
     }
     
