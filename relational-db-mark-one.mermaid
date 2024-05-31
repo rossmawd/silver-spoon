@@ -64,14 +64,6 @@ erDiagram
         string emoji
         datetime createdAt
     }
-    
-    VENUEEVENTS {
-        int id PK
-        int venue_id FK
-        int event_id FK
-        datetime event_date_time
-        datetime createdAt
-    }
 
     USERS ||--o{ USERROLES: "user has many user-roles"
     ROLES ||--o{ USERROLES: "has many"
@@ -80,7 +72,6 @@ erDiagram
     USERS ||--o{ COMMENTS: "makes many"
     USERS ||--o{ COMMENTREACTIONS: "makes many"
     EVENTS ||--o{ COMMENTS: "has many"
-    EVENTS ||--o{ VENUEEVENTS: "occurs at many"
     COMMENTS ||--o{ COMMENTREACTIONS: "receives many"
     COMMENTS ||--o{ COMMENTS: "parent comment has many children"
-    VENUES ||--o{ VENUEEVENTS: "hosts many"
+    VENUES ||--o{ EVENTS: "hosts many"
