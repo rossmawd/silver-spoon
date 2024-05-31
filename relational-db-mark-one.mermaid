@@ -47,6 +47,16 @@ erDiagram
         datetime createdAt
     }
     
+    INVITATIONS {
+        int invitation_id PK
+        int sender_id FK
+        int receiver_id FK
+        int event_id FK
+        datetime sent_at
+        string status
+        datetime createdAt
+    }
+    
     COMMENTS {
         int comment_id PK
         int event_id FK
@@ -75,3 +85,6 @@ erDiagram
     COMMENTS ||--o{ REACTIONS: "receives many"
     COMMENTS ||--o{ COMMENTS: "parent comment has many children"
     VENUES ||--o{ EVENTS: "hosts many"
+    USERS ||--o{ INVITATIONS: "sends many"
+    USERS ||--o{ INVITATIONS: "receives many"
+    EVENTS ||--o{ INVITATIONS: "has many"
