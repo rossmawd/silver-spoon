@@ -65,8 +65,8 @@ erDiagram
         datetime createdAt
     }
 
-    USERS ||--o{ USERROLES: "user has many user-roles"
-    ROLES ||--o{ USERROLES: "has many"
+    USERS ||--o{ USERROLES: "can have many Roles"
+    ROLES ||--o{ USERROLES: "can have many Users"
     USERS ||--o{ EVENTS: "owns"
     USERS ||--o{ VENUES: "owns"
     USERS ||--o{ COMMENTS: "makes many"
