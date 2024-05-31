@@ -57,7 +57,7 @@ erDiagram
         datetime createdAt
     }
     
-    COMMENTREACTIONS {
+    REACTIONS {
         int id PK
         int comment_id FK
         int user_id FK
@@ -70,8 +70,8 @@ erDiagram
     USERS ||--o{ EVENTS: "owns"
     USERS ||--o{ VENUES: "owns"
     USERS ||--o{ COMMENTS: "makes many"
-    USERS ||--o{ COMMENTREACTIONS: "makes many"
+    USERS ||--o{ REACTIONS: "makes many"
     EVENTS ||--o{ COMMENTS: "has many"
-    COMMENTS ||--o{ COMMENTREACTIONS: "receives many"
+    COMMENTS ||--o{ REACTIONS: "receives many"
     COMMENTS ||--o{ COMMENTS: "parent comment has many children"
     VENUES ||--o{ EVENTS: "hosts many"
