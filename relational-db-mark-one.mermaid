@@ -36,18 +36,6 @@ erDiagram
         int capacity
     }
     
-    EVENTINVITATION {
-        int id PK
-        int event_id FK
-        int user_id FK
-    }
-    
-    EVENTRESPONSE {
-        int id PK
-        int event_id FK
-        int user_id FK
-    }
-    
     COMMENTS {
         int comment_id PK
         int event_id FK
@@ -74,12 +62,8 @@ erDiagram
     USERS ||--o{ USERROLES: "user has many user-roles"
     ROLES ||--o{ USERROLES: "has many"
     USERS ||--o{ EVENTS: "owns"
-    USERS ||--o{ EVENTINVITATION: "receives many"
-    USERS ||--o{ EVENTRESPONSE: "has many"
     USERS ||--o{ COMMENTS: "makes many"
     USERS ||--o{ COMMENTREACTIONS: "makes many"
-    EVENTS ||--o{ EVENTINVITATION: "has many"
-    EVENTS ||--o{ EVENTRESPONSE: "has many"
     EVENTS ||--o{ COMMENTS: "has many"
     EVENTS ||--o{ VENUEEVENTS: "occurs at many"
     COMMENTS ||--o{ COMMENTREACTIONS: "receives many"
